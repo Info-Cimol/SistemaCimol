@@ -1,87 +1,22 @@
 <style>
-    #mainHome{
-        float: right;
-        height: 500px;
-        width: 70%;
-        font-family: Tahoma;
-        color: #707070;
-    }
-    #perfil{
-        width: 500px;
-        height: 470px;
-        background-color: white;
-        margin: 20px 0px 0px 170px;
-        padding-top: 50px;
-    }
-    #foto{
-        width: 150px;
+    .foto{
         height: 150px;
-        border-radius: 50%;
-        border: solid #2D2D2D 2px;
-        margin: auto;
-    }
-    #foto h3{
-        margin: 60px 0px 0px 55px;
-        color: #707070;
-    }
-    #nome{
-        width: 250px;
-        margin: auto;
-        margin-top: 30px;
-    }
-    #nome h2, #nome h3{
-        margin: 0px;
-        text-align: center;
-        color: black;
-    }
-    #nome h3{
-        color: #707070;
-        font-size: 24px;
-        font-weight: 100;
-    }
-    #homeHr{
-        margin: 35px 0px 0px 15%;
-        width: 70%;
-    }
-    #email{
-        margin: 0px;
-        text-align: center;
-    }
-    #email h3{
-        font-size: 20px;
-        font-weight: 100;
-    }
-    #button{
-        background-color: #115E7F;
-        width: 90px;
-        height: 30px;
-        color: white;
-        border-radius: 10px;
-        padding-top: 5px;
-        float: right;
-        margin: 30px 75px;
-        cursor: pointer;
-    }
-    #button h3{
-        margin: 0px 0px 0px 17px;
+        width: 150px;
     }
 </style>
-
-<main id="mainHome">
-    <div id="perfil">
-        <div id="foto">
-            <h3>foto</h3>
+<main class="w-75 float-right d-flex justify-content-center">
+    <div class="bg-white h-75 w-50 m-5 p-4">
+        <div class="bg-info rounded-circle foto d-flex justify-content-center align-items-center m-auto">
+            <h3 class="text-white">foto</h3>
         </div>
-        <div id="nome">
-            <h2>Cândido L. de Farias</h2>
-            <h3>informática</h3>
+        <div class="mt-4 ml-auto">
+            <h2 class="text-center text-dark">Cândido L. de Farias</h2>
+            <h4 class="text-center text-secondary">informática</h4>
         </div>
-        <hr id="homeHr"/>
-        <div id="email">
-            <h3>candido.candido@candido.com</h3>
+        <hr />
+        <div class="ml-auto mt-2">
+            <h4 class="text-center text-dark">candido.candido@candido.com</h4>
         </div>
-        <div id="button">
-            <h3>Editar</h3>
-        </div>
+        <button type="button" class="btn btn-info float-right mt-3">Editar</button>
     </div>
 </main>

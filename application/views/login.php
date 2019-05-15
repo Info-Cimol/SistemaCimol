@@ -1,4 +1,4 @@
-<style>
+<!--<style>
     #mainLogin{
         font-family: Tahoma;
         color: #707070;
@@ -54,35 +54,31 @@
         cursor: pointer;
         float: right;
     }
-</style>
+</style>-->
 
-<main id="mainLogin">
-    <div id="form">
-        <form action="<?= base_url()?>usuario/autenticar" method="POST">
-            <div>
-                <h1 id="h1Login">LOGIN</h1>
-                <hr id="hrLogin"/>
-            </div>
+<main>
+    <div class="container w-50 bg-white p-5 h-50 mt-5">
+        <form action="<?= base_url()?>usuario/autenticar" method="POST" >
 
-            <div id="formInput">
-                <div class="divInputs">
-                    <div>
-                        <label> Email </label>
-                    </div>
-                    <input type="email" class="input" name="email" placeholder="Email" />
+            <h2 class="text-dark">Login</h2>
+            <hr class="mb-5"/>
+
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">email</span>
                 </div>
+                <input type="text" class="form-control" placeholder="Email" aria-label="Email" aria-describedby="basic-addon1">
+            </div>
 
-                <div class="divInputs">
-                    <div>
-                        <label> Senha </label>
-                    </div>
-                    <input type="password" class="input" name="senha" placeholder="Senha" />
+            <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1">Senha</span>
                 </div>
+                <input type="password" class="form-control" placeholder="Senha" aria-label="Senha" aria-describedby="basic-addon1">
             </div>
 
-            <div>
-                <input type="submit" id="inputSubmit" name="autenticar" value="Enviar" />
-            </div>
+            <button type="submit" class="btn btn-info float-right mb-3">Pronto!</button>
+
         </form>
     </div>
 

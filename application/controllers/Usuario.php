@@ -15,6 +15,10 @@ class Usuario extends CI_Controller {
     }
 
     function autenticar(){
+        redirect("usuario/home");
+    }
+
+    function home(){
         $this->load->view('templates/header');
         $this->load->view('templates/nav');
         $this->load->view('home');
