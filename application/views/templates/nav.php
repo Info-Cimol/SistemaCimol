@@ -1,6 +1,6 @@
 <style>
     .select{
-        border-left: 5px solid #17a2b8!important;
+        border-left: 5px solid #115e7f!important;
         background-color: #343a40 !important;
     }
     .select > a{
@@ -40,10 +40,11 @@
     let page = "<?php echo $page?>";
 </script>
 
-<nav class="nav flex-column w-25 h-75 bg-white float-left">
+<nav class="nav flex-column w-25 bg-white float-left"
+    style="height: 550px">
     <?php
         if ($permissoes == 1){
-            echo '<div id="perfil" class="unselect container bgwhite border-top border-dark pt-1 pl-3" style="height: 50px">
+            echo '<div id="perfil" class="unselect container bgwhite pt-1 pl-3" style="height: 50px">
                     <a class="nav-link" href="'.base_url().'perfil/1" id="nav-perfil">Perfil</a>
                   </div>';
         }
@@ -51,7 +52,7 @@
 
     <?php
     if ($permissoes == 1){
-        echo '<div id="biblioteca" class="unselect container bgwhite border-top border-dark pt-1 pl-3" style="height: 50px">
+        echo '<div id="biblioteca" class="unselect container bgwhite pt-1 pl-3" style="height: 50px">
                 <a class="nav-link" href="'.base_url().'biblioteca" id="nav-biblioteca">Biblioteca</a>
               </div>';
     }
@@ -59,7 +60,7 @@
 
     <?php
     if ($permissoes == 1){
-        echo '<div id="armarios" class="unselect container bgwhite border-top border-dark pt-1 pl-3" style="height: 50px">
+        echo '<div id="armarios" class="unselect container bgwhite pt-1 pl-3" style="height: 50px">
                 <a class="nav-link" id="nav-armarios">Armários</a>
               </div>';
     }
@@ -67,7 +68,7 @@
 
     <?php
     if ($permissoes == 1){
-        echo '<div id="topico" class="unselect container bgwhite border-top border-dark pt-1 pl-3" style="height: 50px">
+        echo '<div id="topico" class="unselect container bgwhite pt-1 pl-3" style="height: 50px">
                 <a class="nav-link" id="nav-topico">Usuários atuais</a>
               </div>';
     }
@@ -75,7 +76,7 @@
 
     <?php
     if ($permissoes == 1){
-        echo '<div id="topico2" class="unselect container bgwhite border-top border-dark pt-1 pl-3 border-bottom" style="height: 50px">
+        echo '<div id="topico2" class="unselect container bgwhite pt-1 pl-3" style="height: 50px">
                 <a class="nav-link" id="nav-topico2">Cadastrar</a>
               </div>';
     }

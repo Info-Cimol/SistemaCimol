@@ -21,6 +21,6 @@
         <div class="ml-auto mt-2">
             <h4 class="text-center text-dark"><?= $usuario['email']?></h4>
         </div>
-        <button type="button" class="btn btn-info float-right mt-3">Editar</button>
+        <button type="button" class="btn float-right mt-3" style="background-color: #115e7f; color:white;">Editar</button>
     </div>
 </main>

@@ -1,8 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `sistemaCimol` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `sistemaCimol`;
+CREATE DATABASE  IF NOT EXISTS `cimol2` /*!40100 DEFAULT CHARACTER SET utf8 */;
+USE `cimol2`;
 -- MySQL dump 10.13  Distrib 5.7.24, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: sistemaCimol
+-- Host: localhost    Database: cimol2
 -- ------------------------------------------------------
 -- Server version	5.7.24
 
@@ -511,6 +511,30 @@ INSERT INTO `endereco` VALUES (1,'Bento Gonçalves','rua','2807','Ap202','Centro
 UNLOCK TABLES;
 
 --
+-- Table structure for table `funcao`
+--
+
+DROP TABLE IF EXISTS `funcao`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `funcao` (
+  `id` int(50) NOT NULL AUTO_INCREMENT,
+  `funcao` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `funcao`
+--
+
+LOCK TABLES `funcao` WRITE;
+/*!40000 ALTER TABLE `funcao` DISABLE KEYS */;
+INSERT INTO `funcao` VALUES (1,'Servente'),(2,'Secretaria'),(3,'Monitor'),(4,'Biblioteca');
+/*!40000 ALTER TABLE `funcao` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `permissao`
 --
 
@@ -621,6 +645,30 @@ INSERT INTO `professor` VALUES (1,60,1,'','ativo'),(3,60,4,'','ativo'),(5,200,6,
 UNLOCK TABLES;
 
 --
+-- Table structure for table `servidor`
+--
+
+DROP TABLE IF EXISTS `servidor`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `servidor` (
+  `funcao_id` int(100) NOT NULL,
+  `pessoa_id` int(100) NOT NULL,
+  PRIMARY KEY (`funcao_id`,`pessoa_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `servidor`
+--
+
+LOCK TABLES `servidor` WRITE;
+/*!40000 ALTER TABLE `servidor` DISABLE KEYS */;
+INSERT INTO `servidor` VALUES (1,124),(2,3),(3,124);
+/*!40000 ALTER TABLE `servidor` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `telefone`
 --
 
@@ -691,4 +739,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2019-05-16  8:22:51
+-- Dump completed on 2019-05-20  8:04:58
