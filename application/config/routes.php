@@ -53,5 +53,10 @@ $route['default_controller'] = 'usuario/inicio';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['login'] = 'usuario/login';
+$route['login/(:any)'] = 'usuario/login/$1';
+$route['logout'] = 'usuario/logout';
+
+/*/  URL USANDO FUNCTION 'PAGE'  /*/
+$route['perfil/(:any)'] = "usuario/page/perfil/$1";
+$route['biblioteca'] = 'usuario/page/biblioteca';
 
