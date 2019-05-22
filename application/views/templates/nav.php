@@ -8,7 +8,8 @@
     }
 
     .select, .unselect{
-         cursor: pointer;
+        cursor: pointer;
+        padding-left: 0px;
      }
 
     .unselect > a{
@@ -26,70 +27,110 @@
         background-color: white;
     }
 
+    .hr{
+        border: #707070 0.5px solid;
+        width: 40%;
+        margin: 0px 0px 10px 20px;
+    }
+    .labelPerfil{
+        margin: 10px 0px 0px 20px;
+        color: #707070;
+    }
+
+    /*/  Footer bottom perfil  /*/
+    #perfil{
+        position: absolute;
+        bottom: 0px;
+        width: 25%;
+        background-color: #115e7f !important;
+    }
+    #perfil > a{
+        color: white;
+    }
+
 </style>
 <?php
     $page = $_SESSION['page_data'];
-    $permissoes = $_SESSION['user_data']['permissoes']['permissoes']['permissao'];
+    $usuario = $_SESSION['user_data'];
 
-
+    $permissoes = $usuario['permissoes']['permissoes']['permissao'];
     if ($permissoes == 'total'){
         $permissoes = 1;
     }
+
+    $perfil = $usuario['perfil'];
 ?>
 <script>
     let page = "<?php echo $page?>";
 </script>
 
 <nav class="nav flex-column w-25 bg-white float-left"
-    style="height: 550px">
-    <?php
-        if ($permissoes == 1){
-            echo '<div id="perfil" class="unselect container bgwhite pt-1 pl-3" style="height: 50px">
-                    <a class="nav-link" href="'.base_url().'perfil/1" id="nav-perfil">Perfil</a>
-                  </div>';
-        }
-    ?>
+    style="height: 88%; width: 25%; padding-top: 10px;">
 
-    <?php
+    <?php    /*/  Aba para administrador  /*/
     if ($permissoes == 1){
-        echo '<div id="biblioteca" class="unselect container bgwhite pt-1 pl-3" style="height: 50px">
-                <a class="nav-link" href="'.base_url().'biblioteca" id="nav-biblioteca">Biblioteca</a>
-              </div>';
-    }
-    ?>
+        call_user_func('labelTitulo', 'Admin');
 
-    <?php
-    if ($permissoes == 1){
-        echo '<div id="armarios" class="unselect container bgwhite pt-1 pl-3" style="height: 50px">
-                <a class="nav-link" id="nav-armarios">Armários</a>
-              </div>';
-    }
-    ?>
-
-    <?php
-    if ($permissoes == 1){
         echo '<div id="topico" class="unselect container bgwhite pt-1 pl-3" style="height: 50px">
                 <a class="nav-link" id="nav-topico">Usuários atuais</a>
               </div>';
-    }
-    ?>
 
-    <?php
-    if ($permissoes == 1){
         echo '<div id="topico2" class="unselect container bgwhite pt-1 pl-3" style="height: 50px">
                 <a class="nav-link" id="nav-topico2">Cadastrar</a>
               </div>';
     }
+
     ?>
 
+    <?php
+    if ($perfil['professor'] >= 1){
+        if($perfil['professor'] == 2){
+            call_user_func('labelTitulo', 'Coordenador');
+
+            echo '<div id="armarios" class="unselect container bgwhite pt-1 pl-3" style="height: 50px">
+                <a class="nav-link" id="nav-armarios">Armários</a>
+              </div>';
+        }
+
+        call_user_func('labelTitulo', 'Professor');
+
+        echo '<div id="biblioteca" class="unselect container bgwhite pt-1 pl-3" style="height: 50px">
+                <a class="nav-link" href="'.base_url().'biblioteca" id="nav-biblioteca">Biblioteca</a>
+              </div>';
+    }
+
+    ?>
+
+
+    <!--  Footer bottom 'perfil'  -->
+    <footer id="perfil" class="container bgwhite pt-1" style="height: 50px">
+        <a class="nav-link" href="<?= base_url()?>perfil/1" id="nav-perfil">Perfil</a>
+    </footer>
+
 </nav>
+
+
+
+
+<?php
+/*/  Função construtora de elementos html  /*/
+
+function labelTitulo($perfil){
+    echo '<div class="labelPerfil">
+                <span>'.$perfil.'</span>
+              </div>';
+    echo '<hr class="hr"/>';
+}
+
+?>
+
+
+
 
 <script>
 
     switch (page) {
         case 'perfil':
-            document.getElementById("perfil").classList.toggle('select');
-            document.getElementById("perfil").classList.toggle('unselect');
             break;
         case 'biblioteca':
             document.getElementById("biblioteca").classList.toggle('select');

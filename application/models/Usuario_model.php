@@ -9,6 +9,15 @@
 class Usuario_model extends CI_Model {
 
     function autenticar($email, $senha){
+
+        /*/
+            Perfis de usuário:
+            [professor] == 1 -> professor
+            [professor] == 2 -> professor e coordenador
+            [admin] == 1 -> admin
+        /*/
+
+
         $this->db->select("p.id, e.email, u.senha,
                            count(adm.pessoa_id) as admin")
             ->from("pessoa p")
@@ -49,6 +58,7 @@ class Usuario_model extends CI_Model {
         $retorno = $query->result();
         $retorno = json_decode(json_encode($retorno), True);
         $retorno = $retorno[0];
+
 
         /*/  é professor  /*/
         $professor = $this->usuarioProfessor($retorno['pessoa_id']);

@@ -76,7 +76,5 @@ class Usuario extends CI_Controller {
         }
         $this->loadTemplates(2);
         $this->load->view ('templates/page');
-
-        $this->load->view('templates/footer');
     }
 }
