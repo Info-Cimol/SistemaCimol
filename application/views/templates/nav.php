@@ -92,6 +92,10 @@
             echo '<div id="armarios" class="unselect container bgwhite pt-1 pl-3" style="height: 50px">
                 <a class="nav-link" href="'.base_url().'armarios" id="nav-armarios">Armários</a>
               </div>';
+
+            echo '<div id="armarios" class="unselect container bgwhite pt-1 pl-3" style="height: 50px">
+                <a class="nav-link" href="'.base_url().'patrimonio" id="nav-armarios">Patromônio</a>
+              </div>';
         }
 
         /*/  Aba para Professor  /*/

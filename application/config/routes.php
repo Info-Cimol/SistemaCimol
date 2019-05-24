@@ -60,4 +60,6 @@ $route['logout'] = 'usuario/logout';
 $route['perfil/(:any)'] = "loadPage/page/perfil/$1";
 $route['biblioteca'] = 'loadPage/page/biblioteca';
 $route['armarios'] = 'loadPage/page/armarios';
+$route['patrimonio'] = 'loadPage/page/patrimonio';
+$route['patrimonios'] = 'loadPage/page/patrimonios';
 

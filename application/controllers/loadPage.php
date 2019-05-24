@@ -3,6 +3,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class loadPage extends CI_Controller {
 
+    public function __construct(){
+        parent::__construct();
+        $this->load->model("Patrimonio_model");
+
+    }
 
     public function loadTemplates($var){
         if($var == 1){
@@ -25,6 +30,16 @@ class loadPage extends CI_Controller {
         }
         elseif ($page == 'armarios'){
             $_SESSION['page_data'] = 'armarios/index';
+        }
+        elseif ($page == 'patrimonio'){
+            $_SESSION['patrimonio_data']['select'] = $this->Patrimonio_model->listaPatrimonio();
+            $_SESSION['patrimonio_data']["serv_patrimonio"]= $this->Patrimonio_model->listaItem();
+            $_SESSION['page_data'] = 'patrimonio/lista_item';
+        }
+        elseif ($page == 'patrimonios'){
+            $_SESSION['patrimonio_data']['select'] = $this->Patrimonio_model->listaPatrimonio();
+            $_SESSION['patrimonio_data']["serv_patrimonio"]= $this->Patrimonio_model->listaItem();
+            $_SESSION['page_data'] = 'patrimonio/lista_patrimonio';
         }
         $this->loadTemplates(2);
         $this->load->view ('templates/page');
