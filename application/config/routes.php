@@ -57,6 +57,7 @@ $route['login/(:any)'] = 'usuario/login/$1';
 $route['logout'] = 'usuario/logout';
 
 /*/  URL USANDO FUNCTION 'PAGE'  /*/
-$route['perfil/(:any)'] = "usuario/page/perfil/$1";
-$route['biblioteca'] = 'usuario/page/biblioteca';
+$route['perfil/(:any)'] = "loadPage/page/perfil/$1";
+$route['biblioteca'] = 'loadPage/page/biblioteca';
+$route['armarios'] = 'loadPage/page/armarios';
 

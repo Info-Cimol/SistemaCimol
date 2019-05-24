@@ -6,7 +6,7 @@
 </style>
 <?php
     $usuario = $_SESSION['user_data']['perfil'];
-
+    print_r($_SESSION['user_data']['perfil']['curso']);
 ?>
 <main class="w-75 float-right d-flex justify-content-center">
     <div class="bg-white h-75 w-50 m-5 p-4">

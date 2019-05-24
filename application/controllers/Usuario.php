@@ -51,30 +51,4 @@ class Usuario extends CI_Controller {
 
         }
     }
-
-
-    /*/  CARREGAMENTO DE PÁGINAS  /*/
-
-    public function loadTemplates($var){
-        if($var == 1){
-            $this->load->view('templates/header');
-        }
-        elseif($var == 2){
-            $this->load->view('templates/header');
-            $this->load->view('templates/nav');
-        }
-    }
-
-    function page($page, $id=0){
-
-        unset($_SESSION['page_data']);
-        if($page == 'perfil'){
-            $_SESSION['page_data'] = 'perfil';
-        }
-        elseif ($page == 'biblioteca'){
-            $_SESSION['page_data'] = 'biblioteca';
-        }
-        $this->loadTemplates(2);
-        $this->load->view ('templates/page');
-    }
 }
