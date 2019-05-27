@@ -1,9 +1,4 @@
 
-<!-- Carrega o CSS do armário -->
-<link type="text/css" href="<?php echo base_url();  ?>public/temas/admin/css/armario.css" rel="stylesheet">
-<!-- Carrega o CSS do Serviço -->
-<link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>public/temas/admin/css/servicos.css">
-
 <div class="d-flex flex-wrap mb-5">
     <div class="static-widget" style="margin-right: 10px; margin-left: 200px; height: 35px; background-color: #3CB371;">
         <h4 class="m-0" >Alugados</h4>

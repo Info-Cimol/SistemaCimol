@@ -5,17 +5,6 @@ if(!empty($_SESSION['patrimonio_data'])){
 }
 ?>
 
-
-<head>
-    <meta charset="utf-8">
-    <title>Controle de Patrimonios- </title>
-    <link href="<?php echo  base_url()?>/assets/css/reset.css" rel="stylesheet" type="text/css">
-    <link href="<?php echo  base_url()?>/assets/css/estilo.css" rel="stylesheet" type="text/css">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-</head>
-
-
 <script>
 function confirmar_exclusao(Patrimonio) {
     if (!confirm("Tem certeza que deseja excluir o Patrimonio: " + patrimonio + "?")) {
@@ -27,45 +16,51 @@ function confirmar_exclusao(Patrimonio) {
 </script>
 
 
-<button  style="float:right" <a class="btn btn-success" onClick="window.location.href = '<?php echo base_url();?>coordenacao/patrimonio/cadastro_patrimonio';return false;">Novo </a></button>
+<div class="w-75 float-right p-5">
 
-<div>  
+    <div class="w-100" style="height: 60px;">
+        <h4 style="font-size: 30px" class="float-left">Lista de Patrimônios</h4>
 
-    <h4 style="font-family: arial; position:relative; left:400px">Lista de Patrimonios</h4>
-
-    <div style="background-color: white; margin-left: 400px; ">
-        <div class="table-respnsive">        
-            <table class="table table-striped table-bordered table-hover" style="border-style: solid">
-                <thead>
-                    <tr>           
-                                           
-                        <th scope="col">Patrimonios</th>
-                        <tr>
-                        </thead>
-                        <?php
-                        $contador = 0;
-
-
-
-                        foreach ($serv_patrimonio as $serv_patrimonios) {
-                            ?>
-                            <tbody>
-                                <tr>                
-                                                             
-                                    <td> <?php echo $serv_patrimonios->nome?> </td>
-                                    <?php $contador++;
-                                } ?>
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-                ...
-            </div>
-
-        </div>
+        <span class="float-right">
+            <button class="btn btn-info">
+                <a onClick="window.location.href = '<?php echo base_url();?>patrimonio';return false;">Voltar</a>
+            </button>
+        </span>
     </div>
+
+    <button class="btn btn-success mt-2">
+        <a onClick="window.location.href = '<?= base_url();?>coordenacao/patrimonio/cadastro_patrimonio';return false;">Novo </a>
+    </button>
+
+
+    <div class="table-respnsive mt-4">
+        <table class="table table-striped table-bordered table-hover bg-white" style="border-style: solid">
+            <thead>
+                <tr>
+                    <th scope="col">Patrimonios</th>
+                <tr>
+            </thead>
+
+            <?php
+            $contador = 0;
+
+            foreach ($serv_patrimonio as $serv_patrimonios) {  ?>
+
+            <tbody>
+                <tr>
+                    <td> <?php echo $serv_patrimonios->nome?> </td>
+                </tr>
+            </tbody>
+
+                <?php $contador++;
+            } ?>
+        </table>
+    </div>
+
 </div>
+
+
+
 
 
 

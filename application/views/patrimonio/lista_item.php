@@ -5,70 +5,79 @@ if(!empty($_SESSION['patrimonio_data'])){
 }
 ?>
 
+<div id="mainPatrimonio" class="w-75 float-right p-5">
 
+    <div class="w-100" style="height: 60px;">
+        <h4 style="font-size: 30px" class="float-left">Itens</h4>
 
-    <span style="float:right; margin-top:30px">
-        <button><a class="btn btn-success" onClick="window.location.href = '<?php echo base_url();?>patrimonios';return false;">Lista Patrimonios </a></button>
-    </span>
-
-    <h4 style="font-family: arial; text-align:center; font-size: 20px ">Itens</h4>
-
-    <select  id="select" style="float: left; margin-left: 10px ">
-        <?php 
-        foreach($select as $key){  ?>
-            <option value='<?php echo $key->id_patrimonio ?>'><?php echo $key->nome ?></option>
-        <?php }  ?>
-    </select>
-
-    <span  style="float:left; margin-top:10px">
-        <button style="  margin-top: -10px; margin-left: 20px "> <a class="btn btn-success" data-toggle="modal" data-target="#exampleModal" >Adicionar </a> </button>
-    </span>
-
-    <div style="background-color: white; float:left; margin-left:20px">
-        <div class="table-respnsive">        
-            <table class="table table-striped table-bordered table-hover" style="border-style: solid;  ">
-                <thead>
-                    <tr>           
-                        <th scope="col">id patrimonio</th>                     
-                        <th scope="col">Nome Patrimonio</th>
-                        <th scope="col">Numero de Série</th>                     
-                        <th scope="col">Código</th>
-                        <th scope="col">Local</th>
-                        <th scope="col">Excluir</th> 
-                        <th scope="col">Editar</th>                     
-                        <tr>
-                        </thead>
-                        <?php
-                        $contador = 0;
-
-                        foreach ($serv_patrimonio as $serv_patrimonios) {
-                            ?>
-                            <tbody>
-                                <tr>                
-                                    <td><?php echo $serv_patrimonios->id_patrimonio?> </td>
-                                    <td>  <?php echo $serv_patrimonios->nome?> </a></td>                           
-                                    <td> <?php echo $serv_patrimonios->numero_serie?></td>
-                                    <td><?php echo $serv_patrimonios->codigo?></td>
-                                    <td> <?php echo $serv_patrimonios->descricao?> </td>
-
-                                    <td><a href="<?php echo base_url() . "coordenacao/patrimonio/excluir/" . $serv_patrimonios->id_patrimonio ?>" onclick="return confirmar_exclusao('<?php echo $serv_patrimonios->id_patrimonio ?>')" class="btn btn-danger">Excluir</a></td>
-
-                                    <td><a href="<?php echo base_url() . "coordenacao/patrimonio/editar/" . $serv_patrimonios->id_patrimonio ?>" onclick=" return ('<?php echo $serv_patrimonios->id_patrimonio?>')" class="btn btn-primary">Editar</a></td>               
-                                    </tr>             <?php $contador++;
-                                } ?>
-
-
-                            </tbody>
-                        </table>
-                    </div>
-
-                </div>
-                ...
-            </div>
-
-        </div>
+        <span class="float-right">
+            <button class="btn btn-info">
+                <a onClick="window.location.href = '<?php echo base_url();?>patrimonios';return false;">Lista Patrimonios </a>
+            </button>
+        </span>
     </div>
+
+    <div style="height: 50px">
+        <span class="float-left">
+            <button class="btn btn-success" data-toggle="modal" data-target="#exampleModal">
+                <a>Adicionar Item</a>
+            </button>
+        </span>
+
+        <select  id="select" class="float-right custom-select w-25 mt-1">
+            <?php
+            foreach($select as $key){  ?>
+                <option value='<?php echo $key->id_patrimonio ?>'><?php echo $key->nome ?></option>
+            <?php }  ?>
+        </select>
+    </div>
+
+    <div class="table-respnsive mt-2">
+        <table class="table table-striped table-bordered table-hover bg-white" style="border-style: solid;">
+            <thead>
+            <tr>
+                <th scope="col">id</th>
+                <th scope="col">Nome Patrimonio</th>
+                <th scope="col">Numero de Série</th>
+                <th scope="col">Código</th>
+                <th scope="col">Local</th>
+                <th scope="col">Excluir</th>
+                <th scope="col">Editar</th>
+            <tr>
+            </thead>
+            <?php
+            $contador = 0;
+
+            foreach ($serv_patrimonio as $serv_patrimonios) {
+            ?>
+            <tbody>
+            <tr>
+                <td><?php echo $serv_patrimonios->id_patrimonio?> </td>
+                <td>  <?php echo $serv_patrimonios->nome?> </a></td>
+                <td> <?php echo $serv_patrimonios->numero_serie?></td>
+                <td><?php echo $serv_patrimonios->codigo?></td>
+                <td> <?php echo $serv_patrimonios->descricao?> </td>
+
+                <td><a href="<?php echo base_url() . "coordenacao/patrimonio/excluir/" . $serv_patrimonios->id_patrimonio ?>" onclick="return confirmar_exclusao('<?php echo $serv_patrimonios->id_patrimonio ?>')" class="btn btn-danger">Excluir</a></td>
+
+                <td><a href="<?php echo base_url() . "coordenacao/patrimonio/editar/" . $serv_patrimonios->id_patrimonio ?>" onclick=" return ('<?php echo $serv_patrimonios->id_patrimonio?>')" class="btn btn-primary">Editar</a></td>
+            </tr>
+
+            <?php $contador++;
+
+            } ?>
+
+            </tbody>
+        </table>
+    </div>
+
 </div>
+
+
+
+
+
+
 
 
 

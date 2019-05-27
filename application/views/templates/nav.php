@@ -1,13 +1,10 @@
+
 <style>
-    .select{
-        border-left: 5px solid #115e7f!important;
-        background-color: #343a40 !important;
-    }
     .select > a{
         color: white;
     }
 
-    .select, .unselect{
+    .unselect > a{
         cursor: pointer;
         padding-left: 0px;
      }
@@ -49,6 +46,7 @@
     }
 
 </style>
+
 <?php
     $page = $_SESSION['page_data'];
     $usuario = $_SESSION['user_data'];
@@ -60,6 +58,7 @@
 
     $perfil = $usuario['perfil'];
 ?>
+
 <script>
     let page = "<?php echo $page?>";
 </script>
@@ -94,15 +93,20 @@
               </div>';
 
             echo '<div id="armarios" class="unselect container bgwhite pt-1 pl-3" style="height: 50px">
-                <a class="nav-link" href="'.base_url().'patrimonio" id="nav-armarios">Patromônio</a>
+                <a class="nav-link" href="'.base_url().'patrimonio" id="nav-patrimonio">Patrimônio</a>
               </div>';
-        }
 
+
+        }
         /*/  Aba para Professor  /*/
         call_user_func('labelTitulo', 'Professor');
 
         echo '<div id="biblioteca" class="unselect container bgwhite pt-1 pl-3" style="height: 50px">
                 <a class="nav-link" href="'.base_url().'biblioteca" id="nav-biblioteca">Biblioteca</a>
+              </div>';
+
+        echo '<div id="armarios" class="unselect container bgwhite pt-1 pl-3" style="height: 50px">
+                <a class="nav-link" href="'.base_url().'servicos" id="nav-servicos">Serviços Manutenção</a>
               </div>';
     }
 
@@ -136,21 +140,4 @@ function labelTitulo($perfil){
 
 <script>
 
-    switch (page) {
-        case 'perfil':
-            break;
-        case 'biblioteca/biblioteca':
-            document.getElementById("biblioteca").classList.toggle('select');
-            document.getElementById("biblioteca").classList.toggle('unselect');
-            break;
-        case 'armarios':
-            document.getElementById("armarios").classList.toggle('select');
-            document.getElementById("armarios").classList.toggle('unselect');
-            break;
-    }
-
-    $(".unselect").click(function () {
-        $(this).toggleClass('select');
-        $(this).toggleClass('unselect');
-    });
 </script>
