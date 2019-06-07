@@ -1,32 +1,20 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Servico extends MX_Controller {
+class Servico extends CI_Controller {
 	
 	public function __construct(){
 
 		parent::__construct();
-		if(isset($this->user_data)){
-			//print_r($this->user_data['permissoes']);
-			if(
-				!in_array('coordenador_curso', $this->user_data['permissoes']) 
-			){
-				redirect('servico/restrito', 'refresh');
-			}
-		}else{
-			redirect('restrito', 'refresh');
-		}
+        $this->load->model('servico_model');
 	}
-	
-	public function index()
-	{
-	    $this->data['content']="inicio";
-		$this->view->show_view($this->data);
-	}
-	
-	public function restrito(){
-		$this->data['template']="restrito";
-		$this->view->show_view($this->data);
-	}
+
+    /*/  CARREGA A VIEW INICIAL  /*/
+    public function servicos(){
+        $_SESSION['chamados'] = $this->servico_model->busca_chamado();
+        $this->load->view('templates/header');
+        $this->load->view('templates/nav');
+        $this->load->view('servicos/suporte/index');
+    }
 	
 }

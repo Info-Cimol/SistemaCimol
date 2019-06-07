@@ -1,21 +1,21 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Armario extends MX_Controller {
+class Armario extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('armario_model');
-		/*
-		if(isset($this->user_data)){
-			if( !in_array('coordenador_curso', $this->user_data['permissoes']) ){
-				redirect('coordenacao/restrito', 'refresh');	
-			}
-		}else{	
-			redirect('restrito', 'refresh');
-		}
-		*/
+
 	}
+
+    /*/  CARREGA A VIEW INICIAL  /*/
+	public function armarios(){
+        $this->load->view('templates/header');
+        $this->load->view('templates/nav');
+        $this->load->view('armarios/index');
+    }
+
 
 	// testando, busca da pagina inicial
 	public function busca_todos_armarios_index_ajax(){
@@ -36,12 +36,14 @@ class Armario extends MX_Controller {
 		return json_encode($data);
 	}
 
+
 	// Método que carrega a página "alugar/index" que serve para alugar um armário
 	public function alugar(){
 		$this->data['title']="Cimol - Área de coordenação";
 		$this->data['content'] = "armario/alugar/index";
 		$this->view->show_view($this->data);
 	}
+
 
 	// Método que processa a locação de armário. Após inserir os dados no banco é carregada a página "alugar/alugado", dizendo que o armário foi alugado com sucesso
 	public function armario_alugado(){
@@ -76,6 +78,7 @@ class Armario extends MX_Controller {
 			
 	}
 
+
 	public function cadastrar_armario(){
 		
 			$data = array(
@@ -97,6 +100,7 @@ class Armario extends MX_Controller {
 			}
 			
 	}
+
 	
 	// Método que processa a devolução de armário. Após a devolução é carregada a pagina "alugar/alugado" e informa que a devolução foi feita com sucesso.
 	public function devolvido(){
@@ -116,11 +120,13 @@ class Armario extends MX_Controller {
 
 	}
 
+
 	// Busca todos armários locados inclusive os vencidos para fazer a entrega. Retorna por ajax para a página "devolver/index"
 	public function busca_todos_locados_ajax(){		
 		$locados = $this->armario_model->busca_todos_locados($_SESSION['user_data']['curso']);
 		echo json_encode($locados);
-	}	
+	}
+
 
 	// Carrega a página devolver/index, página usada para devolver os armários
 	public function devolver(){
@@ -129,11 +135,13 @@ class Armario extends MX_Controller {
 		$this->view->show_view($this->data);
 	}
 
+
 	// Busca todos alunos do curso e retorna por ajax para a página "armario/index"
 	public function busca_aluno_alugar_ajax(){
 		$alunos = $this->armario_model->busca_aluno_ajax($_SESSION['user_data']['curso']);
 		echo json_encode($alunos);
 	}
+
 
 	// Busca numero e id dos armários disponiveis para serem alugados e retorna para a página "armario/index" e também para a página "alugar/index"
 	public function busca_armarios_disponiveis_ajax(){
@@ -141,17 +149,20 @@ class Armario extends MX_Controller {
 		echo json_encode($disponiveis);
 	}
 
+
 	// Busca aluno e retorna para a pagina devolver/index por ajax, para mostrar de qual aluno é o armario que está sendo devolvido.
 	public function busca_aluno_devolver_ajax(){
 		$aluno = $this->armario_model->busca_aluno_devolver_ajax($this->input->post('armario_id'));		
 		echo json_encode($aluno);
 	}
 
+
 	// Busca numero e id dos armários locados e retorna por ajax para a página armario/index
 	public function armarios_locados_ajax(){
 		$locados = $this->armario_model->busca_armario_locado($_SESSION['user_data']['curso']);
 		echo json_encode($locados);
 	}
+
 
 	// Busca numero e id dos armários vencidos e retona por ajax para a pagina armario/index
 	public function armarios_vencidos_ajax(){

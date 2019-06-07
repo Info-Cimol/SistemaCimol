@@ -2,8 +2,56 @@
 $last = $this->uri->total_segments();
 $tentativa = $this->uri->segment($last);
 ?>
+
+<style>
+
+    @media only screen and (max-device-width: 400px){
+
+        form{
+            height: 100%;
+        }
+
+        form h2{
+            font-size: 4rem;
+        }
+
+        hr {
+            border-top: 5px solid rgba(0,0,0,.1);
+        }
+
+        main > div{
+            width: 75%!important;
+            margin-top: 8rem!important;
+        }
+
+        .input-group-text{
+            font-size: 3rem;
+        }
+
+        .input-group-prepend{
+            width: 100%!important;
+        }
+
+        .form-control{
+            font-size: 3rem;
+        }
+
+        input{
+            margin-top: 25px;
+        }
+
+        button{
+            font-size: 3rem!important;
+            margin-top: 100px!important;
+        }
+
+
+    }
+
+</style>
+
 <main>
-    <div class="container w-50 bg-white p-5 h-50 mt-5">
+    <div class="container bg-white p-5 h-50" style="width: 50%; margin-top: 3rem">
         <form action="<?= base_url()?>usuario/autenticar" method="POST" >
 
             <h2 class="text-dark">Login</h2>
@@ -11,7 +59,7 @@ $tentativa = $this->uri->segment($last);
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
-                    <span class="input-group-text" id="basic-addon1">email</span>
+                    <span class="input-group-text" id="basic-addon1">Email</span>
                 </div>
                 <input type="email" class="form-control" name="email" placeholder="Email">
             </div>

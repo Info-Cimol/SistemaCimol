@@ -1,47 +1,18 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Suporte extends MX_Controller {
+class Suporte extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
 		$this->load->model('servico_model');
-		
-		if(isset($this->user_data)){
-			if(
-				!in_array('coordenador_curso', $this->user_data['permissoes']) 
-			){
-				redirect('servico/restrito', 'refresh');	
-			}
-		}else{	
-			redirect('restrito', 'refresh');
-		}
 	}
 
-	// Método que carrega a párina inicial "armário/index" onde são mostrados todos os armários
-	public function index(){
-
-		$this->data['chamados'] = $this->servico_model->busca_chamado();
-
-		$this->data['content'] = "suporte/index";
-		$this->view->show_view($this->data);
-		
-	}
-
-	/*
-	public function finalizar_chamado(){
-
-		$this->data['title']="Cimol - Área de coordenação";
-		$this->data['content'] = "servico/finalizar_chamado";
-		$this->view->show_view($this->data);
-		
-	}
-	*/
 
 	public function abrir_chamado(){
-		$this->data['content'] = "suporte/abrir_chamado";
-		$this->view->show_view($this->data);
-		
+        $this->load->view('templates/header');
+        $this->load->view('templates/nav');
+        $this->load->view('servicos/suporte/abrir_chamado');
 	}
 
 	public function abrir_chamado_submit(){
@@ -62,28 +33,6 @@ class Suporte extends MX_Controller {
 
 		echo json_encode($chamado);
 
-		/*
-		if ($this->data['chamado'] == true) {
-			$teste = "já tem";
-			echo json_encode($teste);
-			return;
-		}else{
-			$teste2 = "Nao tem";
-			echo json_encode($teste2);
-			return;
-		}
-
-		if (isset($abrir)) {
-
-			$this->data['title']="Cimol - Área de coordenação";
-			$this->data['content'] = "servico/index";
-			$this->view->show_view($this->data);
-		}else{
-			echo "string";
-		}
-		*/
-
-
 	}
 
 	// Filtra os chamados por STATUS
@@ -95,6 +44,7 @@ class Suporte extends MX_Controller {
 
 	}
 
+
 	public function busca_detalhes_abrir_chamado(){
 
 		$dados = $this->servico_model->busca_detalhes_abrir_chamado($this->input->post('codigo'));
@@ -102,18 +52,31 @@ class Suporte extends MX_Controller {
 
 	}
 
-	public function busca_detalhes(){
 
-		$dados = $this->servico_model->busca_detalhes($this->input->post('id'));
-		echo json_encode($dados);
+    public function busca_detalhes(){
+        $id = $this->input->post('id');
 
-	}
+        $this->db->select('e.*, c.*, l.descricao')
+            ->from('serv_chamado c')
+            ->join('serv_equipamento e','e.id=c.id_equipamento')
+            ->join('serv_local l', 'l.id = e.local_id')
+            ->where('c.id_equipamento=', $id)
+            ->order_by('c.id_equipamento', 'DESC')
+            ->limit(1);
+        $query=$this->db->get();
+        $resultado=$query->result_array();
+
+        echo json_encode($resultado);
+
+    }
+
 
 	public function alterar($teste){
 
 		$this->servico_model->alterar($teste);
 
 	}
+
 
 	public function finalizar_chamado_submit(){
 
@@ -128,17 +91,19 @@ class Suporte extends MX_Controller {
 
 	}
 
+
 	public function editar($id){
 
 		$id = filter_var($id, FILTER_SANITIZE_NUMBER_INT);
 		
-		$this->data['chamado'] = $this->servico_model->busca_detalhes($id);
+		$_SESSION['chamado'] = $this->servico_model->busca_detalhes($id);
 
-		$this->data['title']="Cimol - Área de coordenação";
-		$this->data['content'] = "suporte/editar_chamado";
-		$this->view->show_view($this->data);			
+        $this->load->view('templates/header');
+        $this->load->view('templates/nav');
+        $this->load->view('servicos/suporte/editar_chamado');
 		
 	}
+
 
 	public function editar_submit(){
 	
@@ -159,16 +124,17 @@ class Suporte extends MX_Controller {
 
 		$this->servico_model->editar_chamado($dados);
 
-		redirect('servico/suporte', 'refresh');
+		redirect('servico/servicos', 'refresh');
 
 
 	}
 
-	public function busca_local(){
 
+	public function busca_local(){
 		$local = $this->servico_model->busca_local();
 		echo json_encode($local);
 	}
+
 
 	public function adicionar_local(){
 
@@ -176,6 +142,13 @@ class Suporte extends MX_Controller {
 		echo json_encode($adicionar);
 	}
 
+
+	public function buscar_codigo(){
+        $codigo = $_SESSION['codigo'];
+        $local = $this->servico_model->existe_codigo($codigo);
+
+        echo $local;
+    }
 
 
 }

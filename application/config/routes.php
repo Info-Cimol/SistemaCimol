@@ -53,14 +53,29 @@ $route['default_controller'] = 'usuario/inicio';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+/*/  URLs PADRÃO  /*/
 $route['login/(:any)'] = 'usuario/login/$1';
-$route['logout'] = 'usuario/logout';
+$route['logout/(:any)'] = 'usuario/logout/$1';
+$route['inicio'] = 'usuario/inicio';
 
-/*/  URL USANDO FUNCTION 'PAGE'  /*/
-$route['perfil/(:any)'] = "loadPage/page/perfil/$1";
-$route['biblioteca'] = 'loadPage/page/biblioteca';
-$route['armarios'] = 'loadPage/page/armarios';
-$route['patrimonio'] = 'loadPage/page/patrimonio';
-$route['patrimonios'] = 'loadPage/page/patrimonios';
-$route['servicos'] = 'loadPage/page/servicos';
+
+/*/  URL USANDO CONTROLLER 'USUARIO'  /*/
+$route['perfil/(:any)'] = "usuario/perfil/$1";
+$route['biblioteca'] = 'usuario/biblioteca';
+$route['editar_usuario/(:num)'] = 'usuario/editar_usuario/$1';
+$route['usuarios_atuais'] = 'usuario/usuarios_atuais';
+$route['autenticar_edicao/(:num)'] = 'usuario/autenticar_edicao_usuario/$1';
+
+
+/*/  URLs NO PRÓPRIO CONTROLLER  /*/
+$route['armarios'] = 'armario/armarios';
+
+$route['patrimonio'] = 'patrimonio/patrimonio';
+
+$route['patrimonios'] = 'patrimonio/patrimonios';
+
+$route['servicos'] = 'servico/servicos';
+
+
+
 

@@ -1,6 +1,7 @@
 <?php
 class Servico_model extends CI_Model{
-	
+
+
 	// Abrir chamado
 	public function abrir_chamado($dados){
 
@@ -61,16 +62,15 @@ class Servico_model extends CI_Model{
 		return true;	
 	}
 
+
 	// Busca chamado e retorna para a página inicial
 	public function busca_chamado(){
 
 		if (isset($dados)) {
-
 			$this->db->select('*')
 			->from('serv_chamado c')
 			->join('serv_equipamento e','e.codigo=c.codigo_equipamento')
 			->where('c.codigo_equipamento=', $dados['codigo_equipamento']);
-			//->where('aa.data_entrega=', null);
 			$query=$this->db->get();
 			$resultado=$query->result();
 			return $resultados[] = $resultado ;	
@@ -78,9 +78,7 @@ class Servico_model extends CI_Model{
 			
 			$this->db->select('e.*, c.*')
 			->from('serv_chamado c')
-			->join('serv_equipamento e','e.id=c.id_equipamento')
-			//->where('c.equipamento_codigo=', $dados['equipamento_codigo'])
-			->where('c.status!=', 'finalizado');
+			->join('serv_equipamento e','e.id=c.id_equipamento');
 			$this->db->order_by('c.data_abertura');
 			$query=$this->db->get();
 			$resultado=$query->result();
@@ -88,6 +86,7 @@ class Servico_model extends CI_Model{
 		}
 					
 	}
+
 
 	// Busca detalhes pelo código, quando é digitado o código no inicio da página ao abrir chamado
 	public function busca_detalhes_abrir_chamado($codigo){
@@ -103,6 +102,7 @@ class Servico_model extends CI_Model{
 		return $resultados[] = $resultado ;
 	}
 
+
 	// Busca detalhes dos chamados que são mostrados no modal
 	public function busca_detalhes($id){
 
@@ -117,17 +117,15 @@ class Servico_model extends CI_Model{
 		return $resultados[] = $resultado ;
 	}
 
+
 	// Busca chamados por STATUS quando são filtrados pelo select
 	public function busca_chamado_ajax($status){
 			
-			if ($status == "Todos") {
+			if ($status == "Todos" || $status == 'todos') {
 				
 				$this->db->select('*')
 				->from('serv_chamado c')
-				->join('serv_equipamento e','e.id=c.id_equipamento')
-				//->join('serv_local l','l.id=e.local_id')
-				//->where('c.equipamento_codigo=', $dados['equipamento_codigo'])
-				->where('c.status!=', 'Finalizado');
+				->join('serv_equipamento e','e.id=c.id_equipamento');
 				$query=$this->db->get();
 				$resultado=$query->result();
 				return $resultados[] = $resultado ;
@@ -136,25 +134,12 @@ class Servico_model extends CI_Model{
 			$this->db->select('*')
 			->from('serv_chamado c')
 			->join('serv_equipamento e','e.id=c.id_equipamento')
-			//->join('serv_local l','l.id=e.local_id')
-			//->where('c.equipamento_codigo=', $dados['equipamento_codigo'])
 			->where('c.status=', $status);
 			$query=$this->db->get();
 			$resultado=$query->result();
 			return $resultados[] = $resultado ;
 	}
 
-	/*
-	public function finalizar_chamado($dados){
-
-		$this->db->set('status', 'Finalizado');
-		$this->db->set('data_solucao', $dados['data_solucao']);
-		$this->db->set('solucao', $dados['solucao'])
-		->where('serv_chamado.equipamento_codigo=', $dados['codigo'])
-		->update('serv_chamado');
-
-	}
-	*/
 
 	// Edita o chamado
 	public function editar_chamado($dados){
@@ -188,6 +173,8 @@ class Servico_model extends CI_Model{
 		return true;
 	}
 
+
+
 	public function busca_local(){
 		$this->db->select('*')
 		->from('serv_local');
@@ -198,6 +185,8 @@ class Servico_model extends CI_Model{
 		$resultado=$query->result();
 		return $resultados[] = $resultado ;	
 	}
+
+
 
 	public function adicionar_local($local){
 		
@@ -211,4 +200,30 @@ class Servico_model extends CI_Model{
 	}
 
 
+
+
+
+	public function buscar_por_codigo(){
+
+
+
+    }
+
+
+    public function existe_codigo($codigo){
+
+        $this->db->select('*')
+            ->from('serv_equipamento e')
+            ->where('e.codigo', $codigo);
+        $query=$this->db->get();
+        $resultado=$query->result_array();
+
+        if(empty($resultado)){
+            return 0;
+        }
+        else{
+            return 1;
+        }
+
+    }
 }
